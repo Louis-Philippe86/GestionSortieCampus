@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Campus;
 use App\Models\Lieu;
+use App\Models\Ville;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $result = Lieu::query()->find(1);
-    dd($result->ville->nom);
+    $result = Campus::query()->find(2);
+    dd($result->participant);
     return view('welcome');
 });
