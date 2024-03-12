@@ -5688,16 +5688,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v3.12.0",
+            "version": "v3.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "ee233350ee0d5c6e91ea8674b69e7424a471c386"
+                "reference": "ce971eef36dec1ca59b25055e9ed96ed9a817396"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/ee233350ee0d5c6e91ea8674b69e7424a471c386",
-                "reference": "ee233350ee0d5c6e91ea8674b69e7424a471c386",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/ce971eef36dec1ca59b25055e9ed96ed9a817396",
+                "reference": "ce971eef36dec1ca59b25055e9ed96ed9a817396",
                 "shasum": ""
             },
             "require": {
@@ -5756,7 +5756,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
-                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.12.0"
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.12.1"
             },
             "funding": [
                 {
@@ -5768,7 +5768,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-12T11:15:14+00:00"
+            "time": "2024-03-12T12:08:38+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
