@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Participant extends Model
 {
+    public $timestamps = false;
     use HasFactory;
 
     //Un participant appartient à un campus
