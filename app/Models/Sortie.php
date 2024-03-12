@@ -15,7 +15,7 @@ class Sortie extends Model
     }
 
     //Une sortie est associé à un lieu
-    public function lieux(){
+    public function lieu(){
         return $this->belongsTo(Lieu::class);
     }
 

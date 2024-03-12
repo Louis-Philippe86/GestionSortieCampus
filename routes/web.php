@@ -2,6 +2,7 @@
 
 use App\Models\Campus;
 use App\Models\Lieu;
+use App\Models\Sortie;
 use App\Models\Ville;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $result = Campus::query()->find(2);
-    dd($result->participant);
+    $result = Sortie::query()->find(1);
+    dump($result->lieu);
     return view('welcome');
 });
