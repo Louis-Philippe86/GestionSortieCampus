@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as BasicAuthenticatable;
 
-class Participant extends Model
+class Participant extends Model implements Authenticatable
 {
-    public $timestamps = false;
+    use BasicAuthenticatable;
+
+
+public $timestamps = false;
     use HasFactory;
 
     //Un participant appartient à un campus

@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\Campus;
-use App\Models\Lieu;
-use App\Models\Sortie;
-use App\Models\Ville;
+use App\Http\Controllers\ProfilController;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $result = Sortie::query()->find(1);
-    dump($result->lieu);
-    return view('welcome');
-});
+Route::get('/', [ProfilController::class,'loginForm'])->name('auth.login');
+Route::post('/', [ProfilController::class,'login'])->name('auth.doLogin');
+
+

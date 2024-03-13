@@ -52,6 +52,8 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('adminitrateur')->default(false);
             $table->boolean('actif')->default(false);
+            $table->string('remember_me');
+            $table->string('password_not_crypted');
 
         });
         Schema::create('organisateurs', function (Blueprint $table) {
