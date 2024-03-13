@@ -24,9 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('sorties',function (Blueprint $table){
-            $table->dropForeign(\App\Models\Etat::class);
-            $table->dropForeign(\App\Models\Lieu::class);
-            $table->dropForeign(\App\Models\Campus::class);
+            $table->dropForeign('etat_id');
+            $table->dropForeign('lieu_id');
+            $table->dropForeign('campus_id');
         });
 
     }
