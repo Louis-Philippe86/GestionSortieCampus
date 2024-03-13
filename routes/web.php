@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +16,21 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::prefix('/')->controller(LoginController::class)->name('login')->group(function (){
 
-Route::get('/', [ProfilController::class,'loginForm'])->name('auth.login');
-Route::post('/', [ProfilController::class,'login'])->name('auth.doLogin');
+    Route::get('/', 'loginForm')->name('');
+    Route::post('/', 'login')->name('.doLogin');
+    Route::get('/logout','logout')->name('.logout');
+
+});
+
+Route::prefix('home')->controller(HomeController::class)->name('home')->group(function (){
+
+    Route::get('/','home')->name('');
+
+});
+
+
+
 
 
