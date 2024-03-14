@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
-
 use App\Http\Requests\ProfilRequest;
 use App\Models\Participant;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +34,6 @@ class ProfilController extends Controller
 
 
 
-    }
+    
 
 }
