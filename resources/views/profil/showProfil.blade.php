@@ -7,7 +7,7 @@
     <h1 class="text-center mb-5">{{auth()->user()->nom}}</h1>
     @if(session('success'))
         <div class="alert alert-success w-25 m-auto">
-            {{session('success')}}
+            <p class="text-center">{{session('success')}}</p>
         </div>
     @endif
     <br>
