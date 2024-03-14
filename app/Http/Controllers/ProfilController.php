@@ -33,7 +33,9 @@ class ProfilController extends Controller
             return redirect()->route('profil.show')->with('success','Profil modifié avec succé');
         }
 
-
+    }
+    public function uploadPhoto()
+    {
 
     }
 
