@@ -12,9 +12,12 @@
 </head>
 <body>
     <header>
-        @include('inc.nav')
+        @auth()
+            @include('inc.nav')
+        @endauth
     </header>
     <main>
+
         @yield('content')
     </main>
     <footer>
