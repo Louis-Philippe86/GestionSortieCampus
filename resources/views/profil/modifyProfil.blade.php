@@ -5,11 +5,16 @@
 
 @section('content')
     <h1 class="text-center">Mon Profil</h1>
-    @if(session('error'))
-        <div class="alert alert-danger w-25 m-auto">
-            <p class="text-center">{{session('error')}}</p>
+    @if($errors->any())
+        <div class="alert alert-warning w-50 m-auto">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
+
 
     <form class="container-fluid d-flex flex-row" action="" method="post">
         @csrf
@@ -22,9 +27,6 @@
                 <label class="col-6" for="prenom">Prenom:</label>
                 <input class="col-6" type="text" id="prenom" name="prenom" value="{{Auth::user()->prenom}}" required>
             </div>
-            @error('prenom')
-            <p class="alert alert-warning">{{$message}}</p>
-            @enderror
 
             <div class="container-fluid d-flex flex-row col-6 m-3">
                 <label class="col-6" for="nom">Nom:</label>
@@ -38,8 +40,9 @@
 
             <div class="container-fluid d-flex flex-row col-6 m-3">
                 <label class="col-6" for="email">Email:</label>
-                <input class="col-6" type="email" id="email" name="email" required>
+                <input class="col-6" type="text" id="email" name="email" required>
             </div>
+
             <div class="container-fluid d-flex flex-row col-6 m-3">
                 <label class="col-6" for="campus">Campus :</label>
                 <select class="col-6" name="campus_id" id="campus">
@@ -54,10 +57,12 @@
                 <label class="col-6" for="password">Mot de passe :</label>
                 <input class="col-6" type="password" id="motDePasse" name="password" required>
             </div>
+
             <div class="container-fluid d-flex flex-row col-6 m-3">
                 <label class="col-6" for="password_confirmation">Confirmer le mot de passe:</label>
                 <input class="col-6" type="password" id="password_confirmation" name="password_confirmation" required>
             </div>
+
             <div class="container-fluid d-flex flex-row col-6 m-3">
                 <label class="col-6" for="updatePhoto">Modifier la photo</label>
                 <button class="btn btn-warning col-6" type="button" id="updatePhoto" name="updatePhoto" >Importer une photo</button>
