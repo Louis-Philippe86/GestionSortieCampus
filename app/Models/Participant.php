@@ -13,6 +13,9 @@ class Participant extends Model implements Authenticatable
 
 
 public $timestamps = false;
+protected $fillable  = [
+    'remember_token'
+    ];
     use HasFactory;
 
     //Un participant appartient à un campus

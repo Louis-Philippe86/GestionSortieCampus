@@ -12,20 +12,40 @@ class LoginController extends Controller
 
     public function loginForm(){
 
+        if(Auth::user())
+            return view('home');
         return view('login');
     }
 
     public function login(LoginRequest $request){
-        $paramUser = $request->validated();
-        if(Auth::attempt($paramUser)){
+
+        $paramUser = $request->only('email','password');
+        $remember_me =  $request->filled('remember_me');
+
+        if(Auth::attempt($paramUser,$remember_me)){
+            if(!$remember_me){
+                $participant = Participant::query()->where('email', Auth::user()->email)->first();
+                $participant->update(['remember_token' => null]);
+
+            }
+
+
             return redirect()->route('home');
+        }else{
+            return redirect()->route('login')->with('error','Identifiant incorrect');
         }
-        return to_route('login');
+
     }
 
-    public function logout(){
+    public function logout(Request $request){
 
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        $request->session()->remove('_token');
+
+
+
         return to_route('login');
     }
 
