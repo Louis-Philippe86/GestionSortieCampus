@@ -20,6 +20,7 @@
     <footer>
         @include('inc.footer')
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIyT9pA/3Nhw0G1nDfTjW3TQpH4Lrqv6Q+vXcCFH1NiSz8K6C4Bx3Ubs" crossorigin="anonymous"></script>
 
 </body>
 </html>
