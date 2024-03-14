@@ -1,4 +1,4 @@
-@auth()
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{route('home')}}">Accueil</a>
@@ -14,7 +14,7 @@
                     <a @class(['nav-link','active'=> request()->route()->getName() ==='{{#}}'])  aria-current="page" href="#">Campus</a>
                 </li>
                 <li class="nav-item">
-                    <a @class(['nav-link','active'=> request()->route()->getName() ==='{{#}}'])  aria-current="page" href="#">Mon Profil</a>
+                    <a @class(['nav-link','active'=> request()->route()->getName() ==='{{#}}'])  aria-current="page" href="{{route('profil.show')}}">Mon Profil</a>
                 </li>
                 <li class="nav-item">
                     <a @class(['nav-link','active'=> request()->route()->getName() ==='{{#}}'])  aria-current="page" href="{{route('login.logout')}}">Se déconnecter</a>
@@ -28,4 +28,4 @@
     </div>
 
 </nav>
-@endauth
+
