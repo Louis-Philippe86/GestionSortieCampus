@@ -25,15 +25,17 @@ class ProfilController extends Controller
 
     public function modify(ProfilRequest $request){
 
-        dd($request);
-
         if($request->validated()&&Auth::user()) {
-            Participant::query()->where('email', Auth::user()->email)->update($request->validated());
+            $validatedData = $request->validated();
+            unset($validatedData['password_confirmation']);
+            $validatedData['password'] = bcrypt($validatedData['password']);
+            Participant::query()->where('email', Auth::user()->email)->update($validatedData);
             return redirect()->route('profil.show')->with('success','Profil modifié avec succé');
         }
 
 
 
-    
+    }
+
 
 }

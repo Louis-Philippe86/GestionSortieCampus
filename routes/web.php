@@ -1,9 +1,7 @@
 <?php
 
-
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-
 use App\Http\Controllers\ProfilController;
 
 use Illuminate\Http\Request;
@@ -40,7 +38,6 @@ Route::prefix('/profil')->controller(ProfilController::class)->name('profil')->g
     Route::get('/edit','formModify')->name('.formModify');
     Route::post('/edit','modify');
 });
-
 
 
 
