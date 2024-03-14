@@ -28,6 +28,7 @@ class ProfilController extends Controller
         if($request->validated()&&Auth::user()) {
             $validatedData = $request->validated();
             unset($validatedData['password_confirmation']);
+            $validatedData['password'] = bcrypt($validatedData['password']);
             Participant::query()->where('email', Auth::user()->email)->update($validatedData);
             return redirect()->route('profil.show')->with('success','Profil modifié avec succé');
         }
@@ -35,6 +36,6 @@ class ProfilController extends Controller
 
 
     }
-    
+
 
 }
