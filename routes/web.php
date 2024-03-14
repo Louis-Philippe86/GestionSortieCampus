@@ -33,6 +33,7 @@ Route::prefix('home')->controller(HomeController::class)->name('home')->group(fu
 
 Route::prefix('/profil')->controller(ProfilController::class)->name('profil')->group(function (){
 
+
     Route::get('','show')->name('.show');
     Route::get('/edit','formModify')->name('.formModify');
     Route::post('/edit','modify');
