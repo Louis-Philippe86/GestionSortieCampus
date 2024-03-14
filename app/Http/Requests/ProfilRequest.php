@@ -28,7 +28,7 @@ class ProfilRequest extends FormRequest
 
 
         return [
-            'prenom'=>['required'],
+            'prenom'=>['required','min:3'],
             'nom'=>['required'],
             'telephone'=>['required'],
             'email'=>['required'],

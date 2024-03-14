@@ -22,6 +22,9 @@
                 <label class="col-6" for="prenom">Prenom:</label>
                 <input class="col-6" type="text" id="prenom" name="prenom" value="{{Auth::user()->prenom}}" required>
             </div>
+            @error('prenom')
+            <p class="alert alert-warning">{{$message}}</p>
+            @enderror
 
             <div class="container-fluid d-flex flex-row col-6 m-3">
                 <label class="col-6" for="nom">Nom:</label>
