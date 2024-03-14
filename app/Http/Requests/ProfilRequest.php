@@ -29,14 +29,30 @@ class ProfilRequest extends FormRequest
 
         return [
             'prenom'=>['required','min:3'],
-            'nom'=>['required'],
+            'nom'=>['required','min:3'],
             'telephone'=>['required'],
-            'email'=>['required'],
+            'email'=>['required','email'],
             'password'=>['required','confirmed'],
             'password_confirmation'=>['required'],
             'campus_id'=>['required'],
         ];
     }
+    public function messages() : array
+    {
+        return [
+            'prenom.required' => 'Le prénom est requis.',
+            'prenom.min' => 'Le prénom doit avoir au moins :min caractères.',
+            'nom.required' => 'Le nom est requis.',
+            'nom.min' => 'Le nom doit avoir au moins :min caractères.',
+            'telephone.required' => 'Le téléphone est requis.',
+            'email.required' => "L'email est requis.",
+            'email.email' => "L'email doit être une adresse email valide.",
+            'password.required' => "Le mot de passe est requis.",
+            'password.confirmed' => "La confirmation du mot de passe ne correspond pas.",
+            'campus_id.required' => "Le campus est requis.",
+        ];
+    }
+
 
 
 

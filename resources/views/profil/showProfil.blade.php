@@ -6,7 +6,7 @@
 @section('content')
     <h1 class="text-center mb-5">{{auth()->user()->nom}}</h1>
     @if(session('success'))
-        <div class="alert alert-success w-25 m-auto">
+        <div class="alert alert-success w-25 m-auto p-2">
             <p class="text-center">{{session('success')}}</p>
         </div>
     @endif
