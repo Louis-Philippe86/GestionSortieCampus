@@ -22,27 +22,9 @@
             <div class="container-fluid d-flex flex-column">
                 <img class="img-fluid" src="{{asset('img/7th-citadel-image.webp')}}"
                      alt="Photo de {{auth()->user()->prenom}}" style="max-width: 80%; height: auto;">
-{{--                <input class="form-control" type="file" onchange="previewFile()" id="uploadPhoto">--}}
             </div>
-{{--            <script>--}}
-{{--                function previewFile() {--}}
-{{--                    var preview = document.getElementById('previewImage');--}}
-{{--                    var file = document.getElementById('uploadPhoto').files[0];--}}
-{{--                    var reader = new FileReader();--}}
-
-{{--                    reader.onloadend = function () {--}}
-{{--                        preview.src = reader.result;--}}
-{{--                    }--}}
-
-{{--                    if (file) {--}}
-{{--                        reader.readAsDataURL(file);--}}
-{{--                    } else {--}}
-{{--                        preview.src = "{{ asset('img/7th-citadel-image.webp') }}";--}}
-{{--                    }--}}
-{{--                }--}}
-
-{{--            </script>--}}
         </div>
+
         <div class="container-fluid d-flex flex-column col-8">
             <div class="container-fluid d-flex flex-row col-6 m-3">
                 <label class="col-6" for="prenom">Prenom:</label>
@@ -83,11 +65,6 @@
                 <label class="col-6" for="password_confirmation">Confirmer le mot de passe:</label>
                 <input class="col-6" type="password" id="password_confirmation" name="password_confirmation" required>
             </div>
-
-{{--            <div class="container-fluid d-flex flex-row col-6 m-3">--}}
-{{--                <label class="col-6" for="updatePhoto">Modifier la photo</label>--}}
-{{--                <button class="btn btn-warning col-6" type="button" id="updatePhoto" name="updatePhoto" >Importer une photo</button>--}}
-{{--            </div>--}}
 
             <div class="container-fluid d-flex flex-row mt-5">
                 <button class="btn btn-primary w-25 ms-3" type="submit">Enregistrer</button>
