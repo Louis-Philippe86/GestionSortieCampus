@@ -17,6 +17,9 @@
                     <a @class(['nav-link','active'=> request()->route()->getName() ==='{{#}}'])  aria-current="page" href="{{route('profil.show')}}">Mon Profil</a>
                 </li>
                 <li class="nav-item">
+                    <a @class(['nav-link','active'=> request()->route()->getName() ==='sortie.form-create'])  aria-current="page" href="{{route('sortie.form-create')}}">Creer une sortie</a>
+                </li>
+                <li class="nav-item">
                     <a @class(['nav-link','active'=> request()->route()->getName() ==='{{#}}'])  aria-current="page" href="{{route('login.logout')}}">Se déconnecter</a>
                 </li>
 

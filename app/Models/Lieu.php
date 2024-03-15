@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Lieu extends Model
 {
     protected $table = 'lieux';
+    public $timestamps = false;
+    protected $fillable = [
+        'nom','rue','latitude','longitude','ville_id'
+    ];
+
     use HasFactory;
 
     //Un lieu est attaché à une ville

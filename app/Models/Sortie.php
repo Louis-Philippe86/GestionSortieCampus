@@ -8,6 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Sortie extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = [
+        'nom',
+        'dateHeureDebut',
+        'duree',
+        'dateLimiteInscription',
+        'nbInscriptionMax',
+        'infosSortie',
+        'etat_id',
+        'lieu_id',
+        'campus_id'
+    ];
 
     //Une sortie à un seul organisateur
     public function organisateur(){
