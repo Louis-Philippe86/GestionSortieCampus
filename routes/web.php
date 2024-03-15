@@ -42,7 +42,7 @@ Route::prefix('/profil')->controller(ProfilController::class)->name('profil')->g
 Route::prefix('/sortie')->controller(SortieController::class)->name('sortie')->group(function (){
 
     Route::get('/create','formCreate')->name('.form-create');
-    Route::post('/create','create');
+    Route::post('/create','createSortie');
 });
 
 

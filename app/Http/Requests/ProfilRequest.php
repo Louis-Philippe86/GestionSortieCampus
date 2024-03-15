@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 
-use App\Models\Campus;
+
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
+
 
 
 class ProfilRequest extends FormRequest
@@ -23,7 +23,7 @@ class ProfilRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(Request $request): array
+    public function rules(): array
     {
 
 
