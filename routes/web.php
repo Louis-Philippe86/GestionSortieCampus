@@ -43,6 +43,9 @@ Route::prefix('/sortie')->controller(SortieController::class)->name('sortie')->g
 
     Route::get('/create','formCreate')->name('.form-create');
     Route::post('/create','createSortie');
+
+    Route::get('/annuler','formCanceled')->name('.formCanceled');
+    Route::post('/annuler','cancelSortie');
 });
 
 

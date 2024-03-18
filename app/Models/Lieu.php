@@ -26,4 +26,9 @@ class Lieu extends Model
     {
         return $this->hasMany(Sortie::class);
     }
+
+    public function afficherLieu(){
+
+        return sprintf("%s , %s. %s , %s ", $this->nom, $this->rue, $this->ville->codePostal, $this->ville->nom);
+    }
 }

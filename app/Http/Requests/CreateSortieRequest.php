@@ -32,7 +32,8 @@ class CreateSortieRequest extends FormRequest
             'dateLimiteInscription'=>['required'],
             'nbInscriptionMax'=>['required'],
             'infosSortie'=>['required'],
-            'campus_id'=>['required']
+            'campus_id'=>['required'],
+            'participant_id'=>['required']
 
         ];
 
@@ -53,6 +54,7 @@ class CreateSortieRequest extends FormRequest
     {
         //Recuperation du campus_id de l'authentifié
         $this->merge(['campus_id'=> Auth::user()->campus->id]);
+        $this->merge(['participant_id'=> Auth::user()->id]);
 
 
         /*
