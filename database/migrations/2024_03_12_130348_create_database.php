@@ -23,7 +23,6 @@ return new class extends Migration
             $table->date('dateLimiteInscription');
             $table->integer('nbInscriptionMax');
             $table->text('infosSortie');
-            $table->string('etat');
         });
         Schema::create('lieux', function (Blueprint $table) {
             $table->id();

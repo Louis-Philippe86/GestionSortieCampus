@@ -35,6 +35,7 @@ class ProfilRequest extends FormRequest
             'password'=>['required','confirmed'],
             'password_confirmation'=>['required'],
             'campus_id'=>['required'],
+            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
     public function messages() : array

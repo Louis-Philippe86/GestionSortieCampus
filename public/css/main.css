@@ -1,1 +1,6 @@
+input[type="file"] {
+    /* Cacher le bouton de parcourir */
+    overflow: hidden;
+    position: relative;
+}
 

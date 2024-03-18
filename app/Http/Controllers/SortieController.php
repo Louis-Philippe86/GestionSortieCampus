@@ -19,8 +19,6 @@ class SortieController extends Controller
         $data = $request->all();
         $data['etat_id'] = 1;
 
-
-
         if(!isset($data['lieu_id'])) {
             $lieu = Lieu::create($request->lieu);
             $data['lieu_id'] = $lieu->id;
@@ -36,7 +34,7 @@ class SortieController extends Controller
     public function formCanceled(){
         //Récupération d'une sortie pour le test d'affichage
         //TODO : récupéré l'instance de la sortie en cours de consultation
-        $sortieDataTest = Sortie::query()->find(8);
+        $sortieDataTest = Sortie::query()->find(24);
         session()->flash('sortie',$sortieDataTest);
 
         return view('sortie.cancelSortie',['sortie'=>$sortieDataTest]);
