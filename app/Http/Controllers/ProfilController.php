@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfilRequest;
 use App\Models\Participant;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProfilController extends Controller
 {
@@ -13,7 +14,7 @@ class ProfilController extends Controller
         if (Auth::user()){
             return view('profil.showProfil');
         }
-    return view('pageError.notFound');
+        return view('pageError.notFound');
     }
 
     public function formModify(){
@@ -23,21 +24,29 @@ class ProfilController extends Controller
         return view('pageError.notFound');
     }
 
-    public function modify(ProfilRequest $request){
+    public function modify(ProfilRequest $request)
+    {
 
-        if($request->validated()&&Auth::user()) {
+        if ($request->validated() && Auth::user()) {
             $validatedData = $request->validated();
             unset($validatedData['password_confirmation']);
             $validatedData['password'] = bcrypt($validatedData['password']);
-            Participant::query()->where('email', Auth::user()->email)->update($validatedData);
-            return redirect()->route('profil.show')->with('success','Profil modifié avec succé');
+
+            $user = Auth::user();
+            $file = $request->file('photo');
+            $imageName = $user->nom . '.' . $file->getClientOriginalExtension();
+
+            $request->photo->move(public_path('img'), $imageName);
+            $validatedData['photo'] = $imageName;
+
+            Participant::query()->where('email', $user->email)->update($validatedData);
+            return redirect()->route('profil.show')->with('success', 'Profil modifié avec succé');
         }
 
-    }
-    public function uploadPhoto()
-    {
 
     }
+
 
 
 }
+

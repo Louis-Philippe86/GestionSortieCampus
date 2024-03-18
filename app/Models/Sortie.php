@@ -20,11 +20,12 @@ class Sortie extends Model
         'infosSortie',
         'etat_id',
         'lieu_id',
-        'campus_id'
+        'campus_id',
+        'participant_id'
     ];
 
     //Une sortie à un seul organisateur
-    public function organisateur(){
+    public function participant(){
         return $this->belongsTo(Participant::class);
     }
 
@@ -49,5 +50,8 @@ class Sortie extends Model
     {
         return $this->belongsToMany(Participant::class);
     }
+
+
+
 
 }

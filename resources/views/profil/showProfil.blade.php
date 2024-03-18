@@ -12,9 +12,11 @@
     @endif
     <br>
     <div class="container-fluid d-flex flex-row">
-        <div class="col-4 col-4 d-flex align-items-center justify-content-center">
-            <img class="img-fluid" src="{{asset('img/7th-citadel-image.webp')}}"
-                 alt="Photo de {{auth()->user()->prenom}}" style="max-width: 50%; height: auto;">
+        <div class="col-5 col-5 d-flex align-items-center justify-content-center">
+            <img class="img-fluid m-auto"
+                 src="{{ !empty(auth()->user()->photo) ? asset('img/'.auth()->user()->photo) : asset('img/defaultProfil.png') }}"
+                 alt="Photo de {{ auth()->user()->prenom }}"
+                 style="max-width: 50%; height: auto;">
         </div>
         <div class="bg-dark w-50 text-white col-6 p-5">
             <div class="container-fluid d-flex flex-row justify-content-center">

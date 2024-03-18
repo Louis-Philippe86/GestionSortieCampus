@@ -22,7 +22,9 @@
                 <li class="nav-item">
                     <a @class(['nav-link','active'=> request()->route()->getName() ==='{{#}}'])  aria-current="page" href="{{route('login.logout')}}">Se déconnecter</a>
                 </li>
-
+                <li class="nav-item">
+                    <a @class(['nav-link','active'=> request()->route()->getName() ==='{{#}}'])  aria-current="page" href="{{route('sortie.formCanceled')}}">Annuler Une sortie</a>
+                </li>
             </ul>
         </div>
         <div>

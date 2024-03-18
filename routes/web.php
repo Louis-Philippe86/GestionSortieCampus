@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 
@@ -43,6 +44,15 @@ Route::prefix('/sortie')->controller(SortieController::class)->name('sortie')->g
 
     Route::get('/create','formCreate')->name('.form-create');
     Route::post('/create','createSortie');
+
+    Route::get('/annuler','formCanceled')->name('.formCanceled');
+    Route::post('/annuler','cancelSortie');
+});
+
+Route::controller(ImageController::class)->group(function(){
+//    Route::get('/photoPorfil', 'index');
+    Route::post('/photoPorfil', 'store')->name('img.store');
+
 });
 
 
