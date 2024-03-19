@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use App\Models\Participant;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -13,33 +13,31 @@ class LoginController extends Controller
 
         if(Auth::user())
             return view('home');
-        return view('login');
+        else
+            return view('login');
     }
 
     public function login(LoginRequest $request){
 
         $paramUser = $request->only('email','password');
-        $remember_me =  $request->filled('remember_me');
-
-        if(Auth::attempt($paramUser,$remember_me)){
-            if(!$remember_me){
-                $participant = Participant::query()->where('email', Auth::user()->email)->first();
-                $participant->update(['remember_token' => null]);
-
-            }
+        $remember = $request->has('remember');
 
 
+        if(Auth::attempt($paramUser,$remember)){
             return redirect()->route('home');
         }else{
-            return redirect()->route('login')->with('error','Identifiant incorrect');
+            return redirect()->route('auth.login')->with('error','Identifiant incorrect');
         }
 
     }
 
-    public function logout(){
+    public function logout(Request $request){
 
+        Auth::user()->update(['remember_token'=>null]);
         Auth::logout();
-        return to_route('login');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return to_route('auth.login');
     }
 
 }

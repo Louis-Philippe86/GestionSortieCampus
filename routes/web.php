@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::prefix('/')->controller(LoginController::class)->name('login')->group(function (){
+Route::prefix('/')->controller(LoginController::class)->name('auth.login')->group(function (){
 
     Route::get('/', 'loginForm')->name('');
     Route::post('/', 'login')->name('.doLogin');
@@ -32,6 +32,7 @@ Route::prefix('home')->controller(HomeController::class)->name('home')->group(fu
     Route::get('/','home')->name('');
 
 });
+
 
 Route::prefix('/profil')->controller(ProfilController::class)->name('profil')->group(function (){
 
@@ -49,11 +50,6 @@ Route::prefix('/sortie')->controller(SortieController::class)->name('sortie')->g
     Route::post('/annuler','cancelSortie');
 });
 
-Route::controller(ImageController::class)->group(function(){
-//    Route::get('/photoPorfil', 'index');
-    Route::post('/photoPorfil', 'store')->name('img.store');
-
-});
 
 
 

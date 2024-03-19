@@ -69,7 +69,7 @@
                     <input class="form-control" type="file" name="photo" id="photo">
                 </div>
 
-                <div class="container-fluid d-flex flex-row mt-5">
+                <div class="container-fluid d-flex flex-row mt-5 mb-5">
                     <button class="btn btn-primary w-25 ms-3" type="submit">Enregistrer</button>
                     <button class="btn btn-dark ms-4 w-25" type="button" onclick="window.location.href = '{{ route('profil.show') }}'">Retour</button>
                 </div>
