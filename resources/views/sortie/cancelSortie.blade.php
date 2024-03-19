@@ -9,10 +9,6 @@
     @error('motif')
         <p class="alert alert-warning text-center w-50 m-auto">{{$message}}</p>
     @enderror
-    @if(session('success'))
-        <p class="alert alert-success text-center w-50 m-auto">{{session('success')}}</p>
-    @endif
-
     <h1 class="text-center">Annuler une sortie</h1>
     <form action="" method="post" >
         <div class="container-fluid">
@@ -44,7 +40,7 @@
         </div>
         <div class="container-fluid d-flex flex-row justify-content-center mt-5">
             <button class="btn btn-primary ms-3 col-2" type="submit">Enregistrer</button>
-            <button class="btn btn-dark ms-4 col-2" type="button" onclick="window.location.href = '{{ route('home') }}'">Retour</button>
+            <button class="btn btn-dark ms-4 col-2" type="button" onclick="window.location.href = '{{ route('accueil') }}'">Retour</button>
         </div>
     </form>
 

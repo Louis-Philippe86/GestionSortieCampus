@@ -131,7 +131,7 @@
         </div>
         <div class="container-fluid d-flex flex-row justify-content-center mt-5 mb-5">
             <button class="btn btn-primary ms-3 col-2" type="submit">Enregistrer</button>
-            <button class="btn btn-dark ms-4 col-2" type="button" onclick="window.location.href = '{{ route('home') }}'">Retour</button>
+            <button class="btn btn-dark ms-4 col-2" type="button" onclick="window.location.href = '{{ route('accueil') }}'">Retour</button>
         </div>
     </form>
 

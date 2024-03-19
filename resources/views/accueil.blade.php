@@ -15,6 +15,16 @@
             </ul>
         </div>
     @endif
+    @if(session('success'))
+        <div class="alert alert-success w-50 m-auto">
+            <p class="text-center">{{session('success')}}</p>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-warning w-50 m-auto">
+            <p class="text-center">{{session('error')}}</p>
+        </div>
+    @endif
 
 
     <h1 class="text-center mb-5">Sortir.com</h1>
@@ -69,13 +79,13 @@
             </div>
         </form>
     </section>
-{{--    @dump($datas);--}}
+
     <section class="container-fluid col-11 mt-5">
         <table class=" table table-bordered table-striped  mb-5">
             <thead class="">
             <tr class="table-dark align-middle">
                 <th class="col-2 text-center">Nom de la sortie</th>
-                <th class="col-1 text-center">Date de la sortie</th>
+                <th class="col-3 text-center">Date de la sortie</th>
                 <th class="col-1 text-center">Clôture</th>
                 <th class="col-1 text-center">Inscrits / Places</th>
                 <th class="col-1 text-center">Etat</th>
@@ -85,21 +95,21 @@
             </tr>
             </thead>
             <tbody>
-            @dump(\App\Models\Sortie::query()->find(24)->etat_id->libelle);
-
-
             @for($i = 0; $i<count($datas);$i++)
                 <tr>
                     <td>{{$datas[$i]->nom}}</td>
-                    <td>{{$datas[$i]->dateHeureDebut}}</td>
-                    <td>{{$datas[$i]->dateLimiteInscription}}</td>
+                    <td>{{ \Carbon\Carbon::parse($datas[$i]->dateHeureDebut)->format('d/m/Y à H:m') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($datas[$i]->dateLimiteInscription)->format('d/m/Y') }}</td>
                     <td>../{{$datas[$i]->nbInscriptionMax}}</td>
-{{--                    @dump($datas[$i])--}}
-                    <td>{{$datas[$i]->etat_id}}</td>
+                    <td>{{$datas[$i]->etat->libelle}}</td>
                     <td>boolean inscrit</td>
-                    <td>{{$datas[$i]->participant_id}}</td>
-                    <td>action</td>
-
+                    <td>{{$datas[$i]->participant->nom}} {{$datas[$i]->participant->prenom[0]}}.</td>
+                    <td>
+                        @foreach(\App\Http\Controllers\AccueilController::option($datas[$i], \Illuminate\Support\Facades\Auth::user()) as $option)
+                            {{ $option }}
+                        @endforeach
+                        <a href="{{ route('sortie.formCanceled',['sortie'=>$datas[$i]])}}">annuler</a>
+                    </td>
                 </tr>
             @endfor
             </tbody>

@@ -23,30 +23,24 @@ class SortieController extends Controller
             $lieu = Lieu::create($request->lieu);
             $data['lieu_id'] = $lieu->id;
         }
-
-
-        $sortie = Sortie::create($data);
-        $sortie->participant()->associate(Auth::user());
-        $sortie->save();
+        Sortie::create($data);
+        return redirect()->route('accueil')->with('success','Sortie créee avec succé');
 
     }
 
-    public function formCanceled(){
-        //Récupération d'une sortie pour le test d'affichage
-        //TODO : récupéré l'instance de la sortie en cours de consultation
-        $sortieDataTest = Sortie::query()->find(24);
-        session()->flash('sortie',$sortieDataTest);
+    public function formCanceled(Sortie $sortie){
 
-        return view('sortie.cancelSortie',['sortie'=>$sortieDataTest]);
+        return view('sortie.cancelSortie')->with(['sortie'=>$sortie]);
     }
 
-    public function cancelSortie(AnnulerSortie $request){
-        if ($request->validated()){
-            session('sortie')->etat_id = 6; //Id : Annulée
-            return redirect()->route('sortie.formCanceled')->with('success','La sortie est maintenant annulée');
+    public function cancelSortie(AnnulerSortie $request , Sortie $sortie){
+
+        if ($request->validated() && $sortie->participant_id == Auth::user()->id){
+            Sortie::query()->find($sortie->id)->update(['etat_id'=>6]); //Id : Annulée
+            return redirect()->route('accueil')->with('success','La sortie "'.$sortie->nom.'" a été annulée avec succée');
 
         }
-        return redirect()->route('sortie.formCanceled');
+        return redirect()->route('accueil')->with('error','vous n\'ête pas autorisé à modifier cette sortie');
     }
 
 

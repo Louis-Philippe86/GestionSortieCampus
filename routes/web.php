@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 
 use App\Http\Controllers\SortieController;
+use App\Models\Sortie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,15 +22,15 @@ use Illuminate\Support\Facades\Route;
 */
 Route::prefix('/')->controller(LoginController::class)->name('auth.login')->group(function (){
 
-    Route::get('/', 'loginForm')->name('');
-    Route::post('/', 'login')->name('.doLogin');
-    Route::get('/logout','logout')->name('.logout');
+    Route::get('', 'loginForm')->name('');
+    Route::post('', 'login')->name('.doLogin');
+    Route::get('logout','logout')->name('.logout');
 
 });
 
-Route::prefix('home')->controller(HomeController::class)->name('home')->group(function (){
+Route::prefix('/accueil')->controller(AccueilController::class)->name('accueil')->group(function (){
 
-    Route::get('/','home')->name('');
+    Route::get('/','accueil')->name('');
 
 });
 
@@ -42,12 +43,11 @@ Route::prefix('/profil')->controller(ProfilController::class)->name('profil')->g
 });
 
 Route::prefix('/sortie')->controller(SortieController::class)->name('sortie')->group(function (){
-
     Route::get('/create','formCreate')->name('.form-create');
     Route::post('/create','createSortie');
 
-    Route::get('/annuler','formCanceled')->name('.formCanceled');
-    Route::post('/annuler','cancelSortie');
+    Route::get('/annuler-{sortie}','formCanceled')->name('.formCanceled');
+    Route::post('/annuler-{sortie}','cancelSortie');
 });
 
 
