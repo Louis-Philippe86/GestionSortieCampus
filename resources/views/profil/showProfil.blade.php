@@ -43,7 +43,7 @@
             <div class="container-fluid d-flex col-6 bg-white mt-5">
                 <div class="container-fluid d-flex justify-content-around p-3">
                     <button class="btn btn-primary" type="button" onclick="window.location.href = '{{ route('profil.formModify') }}'">Modifier</button>
-                    <button class="btn btn-dark" type="button" onclick="window.location.href = '{{ route('home') }}'">Retour</button>
+                    <button class="btn btn-dark" type="button" onclick="window.location.href = '{{ route('accueil') }}'">Retour</button>
 
                 </div>
             </div>

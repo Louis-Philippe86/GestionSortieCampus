@@ -12,7 +12,7 @@ class LoginController extends Controller
     public function loginForm(){
 
         if(Auth::user())
-            return view('home');
+            return redirect()->route('accueil');
         else
             return view('login');
     }
@@ -24,7 +24,7 @@ class LoginController extends Controller
 
 
         if(Auth::attempt($paramUser,$remember)){
-            return redirect()->route('home');
+            return redirect()->route('accueil');
         }else{
             return redirect()->route('auth.login')->with('error','Identifiant incorrect');
         }
