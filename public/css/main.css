@@ -1,6 +1,4 @@
-input[type="file"] {
-    /* Cacher le bouton de parcourir */
-    overflow: hidden;
+html{
     position: relative;
 }
 

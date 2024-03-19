@@ -23,8 +23,8 @@
             </div>
             <div class="container-fluid d-flex flex-row justify-content-center align-items-center">
                 <button class="btn btn-light m-5" type="submit">Se connecter</button>
-                <input type="checkbox" id="remember_me" name="remember_me">
-                <label class="m-2" for="remember_me">Se souvenir de moi</label>
+                <input type="checkbox" id="remember" name="remember">
+                <label class="m-2" for="remember">Se souvenir de moi</label>
 
             </div>
         </fieldset>

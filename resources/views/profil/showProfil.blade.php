@@ -11,7 +11,7 @@
         </div>
     @endif
     <br>
-    <div class="container-fluid d-flex flex-row">
+    <div class="container-fluid d-flex flex-row mb-5">
         <div class="col-5 col-5 d-flex align-items-center justify-content-center">
             <img class="img-fluid m-auto"
                  src="{{ !empty(auth()->user()->photo) ? asset('img/'.auth()->user()->photo) : asset('img/defaultProfil.png') }}"
