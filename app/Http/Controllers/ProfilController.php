@@ -49,19 +49,28 @@ class ProfilController extends Controller
 
     }
 
-    public function inscritpion(Sortie $sortie, Participant $participant){
+    public function inscritpion(Sortie $sortie){
 
-        Participant_sortie::query()->update([
-            'participant_id'=>$participant->id,
-            'sortie_id'=>$sortie->id,
-        ]);
+
+        $participantSortie = new Participant_sortie();
+        $participantSortie->participant_id = Auth::user()->id;
+        $participantSortie->sortie_id = $sortie->id;
+        $participantSortie->save();
+
         return redirect()->route('accueil')->with('success', 'Inscritpion à la sortie'.$sortie->nom .'confirmé');
 
     }
-    public function annulerInscritpion(Sortie $sortie, Participant $participant){
+    public function annulerInscritpion(Sortie $sortie){
 
-        $user = Participant_sortie::query()->find(['participant_id'=>$participant->id]);
-        dd($user);
+
+       Participant_sortie::query()
+           ->where('participant_id',Auth::user()->id)
+           ->where('sortie_id',$sortie->id)
+           ->delete();
+
+
+
+        return redirect()->route('accueil')->with('success','L\'inscription à la sortie'.$sortie->nom.'est annulée');
 
 
     }

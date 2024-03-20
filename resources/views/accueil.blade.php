@@ -96,25 +96,33 @@
             </thead>
             <tbody>
             @for($i = 0; $i<count($datas);$i++)
-                <tr>
-                    <td>{{$datas[$i]->nom}}</td>
-                    <td>{{ \Carbon\Carbon::parse($datas[$i]->dateHeureDebut)->format('d/m/Y à H:m') }}</td>
-                    <td>{{ \Carbon\Carbon::parse($datas[$i]->dateLimiteInscription)->format('d/m/Y') }}</td>
-                    <td>../{{$datas[$i]->nbInscriptionMax}}</td>
-                    <td>{{$datas[$i]->etat->libelle}}</td>
-                    <td>boolean inscrit</td>
-                    <td>{{$datas[$i]->participant->nom}} {{$datas[$i]->participant->prenom[0]}}.</td>
-                    <td>
-                        @foreach(\App\Http\Controllers\AccueilController::option($datas[$i], \Illuminate\Support\Facades\Auth::user()) as $option)
-                            {!! $option !!}
-                        @endforeach
-{{--                        <a href="{{ route('sortie.formCanceled',['sortie'=>$datas[$i]])}}">annuler</a>--}}
-                    </td>
-                </tr>
+{{--         Si l'organisateur de la sortie est celui qui est connecté, alors on affcihe les sortie avec l'etat : "Cree"--}}
+                @if($datas[$i]->etat->libelle != 'Cree' || $datas[$i]->participant->nom == Auth::user()->nom)
+                    <tr>
+                        <td>{{$datas[$i]->nom}}</td>
+                        <td>{{ \Carbon\Carbon::parse($datas[$i]->dateHeureDebut)->format('d/m/Y à H:m') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($datas[$i]->dateLimiteInscription)->format('d/m/Y') }}</td>
+                        <td class="text-center">{{$datas[$i]->participants->count()}} / {{$datas[$i]->nbInscriptionMax}}</td>
+                        <td class="text-center">{{$datas[$i]->etat->libelle}}</td>
+                        <td class="text-center">
+                            @foreach($datas[$i]->participants as $inscrit)
+                                @if($inscrit->nom == Auth::user()->nom)
+                                    X
+                                @endif
+                            @endforeach
+
+                        </td>
+                        <td>{{$datas[$i]->participant->nom}} {{$datas[$i]->participant->prenom[0]}}.</td>
+                        <td>
+                            @foreach(\App\Http\Controllers\AccueilController::optionAction($datas[$i], \Illuminate\Support\Facades\Auth::user()) as $option)
+                                {!! $option !!}
+                            @endforeach
+                        </td>
+                    </tr>
+                @endif
             @endfor
             </tbody>
-
-        </table>
+    <section>
     </section>
 
 

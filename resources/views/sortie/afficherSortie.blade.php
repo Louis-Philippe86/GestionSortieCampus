@@ -64,7 +64,6 @@
         </div>
 
         @if($sortie->etat_id == 6)
-
             <p class="text-center fst-italic fw-bold text-white mt-5 mb-5">Sortie annulee</p>
         @endif
     </section>
@@ -74,9 +73,30 @@
             <button class="btn btn-primary col-2 m-auto" type="submit">Publier</button>
         </form>
     @endif
-{{--    <section class="mb-5">--}}
-{{--        <h3>Participants</h3>--}}
-{{--        TODO:Ajouter les participants inscrit--}}
-
-{{--    </section>--}}
+    @if($sortie->etat_id != 6)
+    <h3>Participants</h3>
+    <section class="mb-5  container-fluid d-flex flex-row">
+        <section class="container-fluid col-6 mt-5">
+            <table class=" table table-bordered table-striped  mb-5">
+                <thead class="">
+                <tr class="table-dark align-middle">
+                    <th class="col-2 text-center">Nom</th>
+                    <th class="col-3 text-center">Prenom</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($sortie->participants as $inscrit)
+                    <tr>
+                        <td>{{$inscrit->nom}}</td>
+                        <td>{{$inscrit->prenom}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </section>
+    @endif
+        <div class="container-fluid d-flex justify-content-center align-items-center mb-5 mt-5 col-6">
+            <button class="btn btn-lg btn-dark m-auto col-2" type="button" onclick="window.location.href = '{{ route('accueil') }}'">Retour</button>
+        </div>
+    </section>
 @endsection
