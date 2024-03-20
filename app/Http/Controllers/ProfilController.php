@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfilRequest;
 use App\Models\Participant;
+use App\Models\Participant_sortie;
+use App\Models\Sortie;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -43,6 +45,23 @@ class ProfilController extends Controller
             Participant::query()->where('email', $user->email)->update($validatedData);
             return redirect()->route('profil.show')->with('success', 'Profil modifié avec succé');
         }
+
+
+    }
+
+    public function inscritpion(Sortie $sortie, Participant $participant){
+
+        Participant_sortie::query()->update([
+            'participant_id'=>$participant->id,
+            'sortie_id'=>$sortie->id,
+        ]);
+        return redirect()->route('accueil')->with('success', 'Inscritpion à la sortie'.$sortie->nom .'confirmé');
+
+    }
+    public function annulerInscritpion(Sortie $sortie, Participant $participant){
+
+        $user = Participant_sortie::query()->find(['participant_id'=>$participant->id]);
+        dd($user);
 
 
     }

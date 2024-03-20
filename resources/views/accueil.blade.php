@@ -106,9 +106,9 @@
                     <td>{{$datas[$i]->participant->nom}} {{$datas[$i]->participant->prenom[0]}}.</td>
                     <td>
                         @foreach(\App\Http\Controllers\AccueilController::option($datas[$i], \Illuminate\Support\Facades\Auth::user()) as $option)
-                            {{ $option }}
+                            {!! $option !!}
                         @endforeach
-                        <a href="{{ route('sortie.formCanceled',['sortie'=>$datas[$i]])}}">annuler</a>
+{{--                        <a href="{{ route('sortie.formCanceled',['sortie'=>$datas[$i]])}}">annuler</a>--}}
                     </td>
                 </tr>
             @endfor

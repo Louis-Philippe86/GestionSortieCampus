@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AnnulerSortie;
 use App\Http\Requests\CreateSortieRequest;
 use App\Models\Lieu;
+use App\Models\Participant;
+use App\Models\Participant_sortie;
 use App\Models\Sortie;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,6 +44,22 @@ class SortieController extends Controller
         }
         return redirect()->route('accueil')->with('error','vous n\'ête pas autorisé à modifier cette sortie');
     }
+
+    public function afficherSortie(Sortie $sortie){
+
+        return view('sortie.afficherSortie')->with(['sortie'=>$sortie]);
+    }
+
+    public function modifierSortie(Sortie $sortie){
+        return view('sortie.modiferSortie')->with(['sortie'=>$sortie]);
+    }
+
+    public function publierSortie(Sortie $sortie){
+        Sortie::query()->find($sortie->id)->update(['etat_id'=>2]);
+        return redirect()->route('accueil')->with('success','La sortie a été publié avec succée');
+    }
+
+
 
 
 
