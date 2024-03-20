@@ -40,8 +40,8 @@ Route::prefix('/profil')->controller(ProfilController::class)->name('profil')->g
     Route::get('','show')->name('.show');
     Route::get('/edit','formModify')->name('.formModify');
     Route::post('/edit','modify');
-    Route::get('/inscriptionSortie','inscritpion')->name('.inscription');
-    Route::get('/annulerInscriptionSortie','annulerInscritpion')->name('.annulerInscritpion');
+    Route::get('/inscriptionSortie-{sortie}','inscritpion')->name('.inscription');
+    Route::get('/annulerInscriptionSortie-{sortie}','annulerInscritpion')->name('.annulerInscritpion');
 });
 
 Route::prefix('/sortie')->controller(SortieController::class)->name('sortie')->group(function (){

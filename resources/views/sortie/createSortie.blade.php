@@ -67,7 +67,7 @@
                     <p class=" fw-bold col-8 text-center">Vous êtes inscrit au campus de {{ Auth::user()->campus->nom }}</p>
                     <div class="container-fluid mt-3 col-8 d-flex align-items-center">
                     </div>
-                    <div class="container-fluid d-flex flex-row col-8">
+                    <div class="container-fluid d-flex flex-row col-9">
                         <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                             <input  type="radio" id="getPlace" name="ajouterLieu" value="lieu" onchange="creationLieu('lieuExistant','nouveauLieu')" checked/>
                             <label class="ms-3" for="ajouterLieu">Récupere un lieu existant</label>
