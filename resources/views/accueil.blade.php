@@ -41,9 +41,7 @@
                             <label class="col-2" for="campus">Campus : </label>
                             <select class="col-3" name="campus_id" id="campus" >
                                 @foreach(\App\Models\Campus::all() as $campus)
-
-                                    <option value="{{$campus->id}}" @if($_GET['campus_id'] == $campus->id) selected @endif>{{$campus->nom}}</option>
-
+                                    <option value="{{$campus->id}}" @if(isset($_GET['campus_id']) && $_GET['campus_id'] == $campus->id) selected @endif>{{$campus->nom}}</option>
                                 @endforeach
                             </select>
                         </div>
