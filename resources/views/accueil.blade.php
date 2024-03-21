@@ -60,7 +60,7 @@
                     </div>
                     <div class="container-fluid d-flex flex-column justify-content-center col-4 ">
                         <div class="container-fluid d-flex flex-row">
-                            <input type="checkbox" id="ownSortie" name="ownSortie" checked />
+                            <input type="checkbox" id="ownSortie" name="ownSortie" />
                             <label class="ms-2" for="ownSortie">Sortie dont je suis l'organisateur</label>
                         </div>
                         <div class="container-fluid d-flex flex-row">

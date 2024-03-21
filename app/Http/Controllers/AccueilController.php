@@ -10,7 +10,7 @@ use App\Models\Sortie;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use function PHPUnit\Framework\isEmpty;
 
 
 class AccueilController extends Controller
@@ -18,16 +18,69 @@ class AccueilController extends Controller
     public function accueil(Request $request){
         if(Auth::user()){
 
+            $sortie = Sortie::query();
+            dump($request->all());
 
-            $sortie = Sortie::all()->where('campus_id', $request['campus_id']);
-            if($request['dateMin'] != null){
-                $sortie->where('dateHeureDebut','=',$request['dateMin']);
+            if($request->has('campus_id')) {
+                $sortie->where('campus_id', $request->campus_id);
+            }
+
+            if ($request->has('dateMin') && $request->dateMin != null) {
+                $sortie->where('dateHeureDebut', '>', $request->dateMin);
+            }
+
+            if ($request->has('dateMax') && $request->dateMax != null) {
+                $sortie->where('dateLimiteInscription', '<', $request->dateMax);
+            }
+
+            if ($request->has('search') && $request->search != null) {
+                $sortie->where('nom', 'LIKE', '%' . $request->search . '%');
+            }
+
+            if ($request->has('ownSortie') && $request->ownSortie != null) {
+                $sortie->where('participant_id', Auth::user()->id);
+                dump($sortie->getQuery());
 
             }
-            return view('accueil',['datas' => $sortie]);
+
+            if($request->has('sortieNonInscrit') && $request->sortieNonInscrit != null){
+
+                if ($request->has('sortieNonInscrit') && !isset($request['sortieInscrit']) && !isset($request['ownSortie'])) {
+                    $sortie->whereDoesntHave('participants', function ($query) {
+                        $query->where('participant_id', Auth::user()->id);
+                    })->whereNot('participant_id', Auth::user()->id);
+                        dump($sortie);
+
+                }else{
+                    $sortie->orWhereDoesntHave('participants', function ($query) {
+                        $query->where('participant_id', Auth::user()->id);
+                    });
+                    dump($sortie);
+                }
+
+            }
+
+            if($request->has('sortieInscrit') && $request->sortieInscrit != null){
+
+                if ($request->has('sortieInscrit') && !isset($request['sortieNonInscrit']) && !isset($request['ownSortie'])) {
+                    $sortie->whereHas('participants', function ($query) {
+                        $query->where('participant_id', Auth::user()->id);
+                    })->whereNot('participant_id', Auth::user()->id);
+                    dump($sortie);
+
+                }else{
+                    $sortie->orWhereHas('participants', function ($query) {
+                        $query->where('participant_id', Auth::user()->id);
+                    });
+                    dump($sortie);
+                }
+
+            }
+
+            $result = $sortie->get();
+            return view('accueil', ['datas' => $result]);
         }
         return view('pageError.notFound');
-
     }
 
 
