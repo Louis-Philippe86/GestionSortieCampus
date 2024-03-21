@@ -19,7 +19,6 @@ class AccueilController extends Controller
         if(Auth::user()){
 
             $sortie = Sortie::query();
-            dump($request->all());
 
             if($request->has('campus_id')) {
                 $sortie->where('campus_id', $request->campus_id);
@@ -39,8 +38,6 @@ class AccueilController extends Controller
 
             if ($request->has('ownSortie') && $request->ownSortie != null) {
                 $sortie->where('participant_id', Auth::user()->id);
-                dump($sortie->getQuery());
-
             }
 
             if($request->has('sortieNonInscrit') && $request->sortieNonInscrit != null){
@@ -49,13 +46,10 @@ class AccueilController extends Controller
                     $sortie->whereDoesntHave('participants', function ($query) {
                         $query->where('participant_id', Auth::user()->id);
                     })->whereNot('participant_id', Auth::user()->id);
-                        dump($sortie);
-
                 }else{
                     $sortie->orWhereDoesntHave('participants', function ($query) {
                         $query->where('participant_id', Auth::user()->id);
                     });
-                    dump($sortie);
                 }
 
             }
@@ -66,13 +60,10 @@ class AccueilController extends Controller
                     $sortie->whereHas('participants', function ($query) {
                         $query->where('participant_id', Auth::user()->id);
                     })->whereNot('participant_id', Auth::user()->id);
-                    dump($sortie);
-
                 }else{
                     $sortie->orWhereHas('participants', function ($query) {
                         $query->where('participant_id', Auth::user()->id);
                     });
-                    dump($sortie);
                 }
 
             }
