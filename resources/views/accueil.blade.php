@@ -30,7 +30,9 @@
     <h1 class="text-center mb-5">Sortir.com</h1>
     <section>
         <h5>Filtrer les sorties</h5>
-        <form action="" method="post" >
+
+        <form action="" method="get" >
+
             <div class="container-fluid d-flex flex-row">
                 @csrf
                 <div class="container-fluid d-flex flex-row col-12 ">
@@ -39,13 +41,17 @@
                             <label class="col-2" for="campus">Campus : </label>
                             <select class="col-3" name="campus_id" id="campus" >
                                 @foreach(\App\Models\Campus::all() as $campus)
-                                    <option value="{{$campus->id}}">{{$campus->nom}}</option>
+
+                                    <option value="{{$campus->id}}" @if($_GET['campus_id'] == $campus->id) selected @endif>{{$campus->nom}}</option>
+
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="container-fluid d-flex flex-row mt-3">
-                            <label class="col-2"  for="search">Rechercher</label>
-                            <input class="col-5"  type="search" name="search" id="search">
+                            <label class="col-2"  for="search">Rechercher :</label>
+                            <input class="col-5"  type="search" name="search" id="search" >
+
                         </div>
                         <div class="container-fluid d-flex flex-row mt-3">
                             <label class="col-1"  for="dateMin">Entre </label>
@@ -95,32 +101,35 @@
             </tr>
             </thead>
             <tbody>
-            @for($i = 0; $i<count($datas);$i++)
-{{--         Si l'organisateur de la sortie est celui qui est connecté, alors on affcihe les sortie avec l'etat : "Cree"--}}
-                @if($datas[$i]->etat->libelle != 'Cree' || $datas[$i]->participant->nom == Auth::user()->nom)
-                    <tr>
-                        <td>{{$datas[$i]->nom}}</td>
-                        <td>{{ \Carbon\Carbon::parse($datas[$i]->dateHeureDebut)->format('d/m/Y à H:m') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($datas[$i]->dateLimiteInscription)->format('d/m/Y') }}</td>
-                        <td class="text-center">{{$datas[$i]->participants->count()}} / {{$datas[$i]->nbInscriptionMax}}</td>
-                        <td class="text-center">{{$datas[$i]->etat->libelle}}</td>
-                        <td class="text-center">
-                            @foreach($datas[$i]->participants as $inscrit)
-                                @if($inscrit->nom == Auth::user()->nom)
-                                    X
-                                @endif
-                            @endforeach
 
-                        </td>
-                        <td>{{$datas[$i]->participant->nom}} {{$datas[$i]->participant->prenom[0]}}.</td>
-                        <td>
-                            @foreach(\App\Http\Controllers\AccueilController::optionAction($datas[$i], \Illuminate\Support\Facades\Auth::user()) as $option)
-                                {!! $option !!}
-                            @endforeach
-                        </td>
-                    </tr>
-                @endif
-            @endfor
+            @if($datas != null || $datas!=0)
+                @for($i = 0; $i<count($datas);$i++)
+    {{--         Si l'organisateur de la sortie est celui qui est connecté, alors on affcihe les sortie avec l'etat : "Cree"--}}
+                    @if($datas[$i]->etat->libelle != 'Cree' || $datas[$i]->participant->nom == Auth::user()->nom)
+                        <tr>
+                            <td>{{$datas[$i]->nom}}</td>
+                            <td>{{ \Carbon\Carbon::parse($datas[$i]->dateHeureDebut)->format('d/m/Y à H:m') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($datas[$i]->dateLimiteInscription)->format('d/m/Y') }}</td>
+                            <td class="text-center">{{$datas[$i]->participants->count()}} / {{$datas[$i]->nbInscriptionMax}}</td>
+                            <td class="text-center">{{$datas[$i]->etat->libelle}}</td>
+                            <td class="text-center">
+                                @foreach($datas[$i]->participants as $inscrit)
+                                    @if($inscrit->nom == Auth::user()->nom)
+                                        X
+                                    @endif
+                                @endforeach
+
+                            </td>
+                            <td>{{$datas[$i]->participant->nom}} {{$datas[$i]->participant->prenom[0]}}.</td>
+                            <td>
+                                @foreach(\App\Http\Controllers\AccueilController::optionAction($datas[$i], \Illuminate\Support\Facades\Auth::user()) as $option)
+                                    {!! $option !!}
+                                @endforeach
+                            </td>
+                        </tr>
+                    @endif
+                @endfor
+            @endif
             </tbody>
     <section>
     </section>

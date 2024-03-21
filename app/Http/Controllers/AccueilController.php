@@ -2,20 +2,47 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Http\Requests\SearchController;
 use App\Models\Participant;
 use App\Models\Participant_sortie;
 use App\Models\Sortie;
+
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+
 
 class AccueilController extends Controller
 {
-    public function accueil(){
+    public function accueil(Request $request){
         if(Auth::user()){
-            $sortie = Sortie::all();
-            return view('accueil',['datas'=>$sortie]);
+
+
+            $sortie = Sortie::all()->where('campus_id', $request['campus_id']);
+            if($request['dateMin'] != null){
+                $sortie->where('dateHeureDebut','=',$request['dateMin']);
+
+            }
+            return view('accueil',['datas' => $sortie]);
         }
         return view('pageError.notFound');
+
     }
+
+
+
+//  "_token" => "9x9BvbQSin708rItvBWLo5nphaGJYEzBNPg7rWdQ"
+//  "campus_id" => "1"
+//  "search" => null
+//  "dateMin" => null
+//  "dateMax" => null
+//  "ownSortie" => "on"
+//  "sortieInscrit" => "on"
+//  "sortieNonInscrit" => "on"
+//  "sortieTermine" => "on"
+
+
 
     public static function optionAction(Sortie $sortie,Participant $user) {
 

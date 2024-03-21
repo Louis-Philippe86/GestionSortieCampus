@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class CreateSortieRequest extends FormRequest
