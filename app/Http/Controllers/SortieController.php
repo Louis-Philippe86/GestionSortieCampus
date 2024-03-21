@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AnnulerSortie;
 use App\Http\Requests\CreateSortieRequest;
 use App\Models\Lieu;
-use App\Models\Participant;
-use App\Models\Participant_sortie;
 use App\Models\Sortie;
 use Illuminate\Support\Facades\Auth;
 

@@ -32,6 +32,7 @@ Route::prefix('/accueil')->controller(AccueilController::class)->name('accueil')
 
     Route::get('/','accueil')->name('');
 
+
 });
 
 
