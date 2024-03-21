@@ -30,6 +30,7 @@ Route::prefix('/')->controller(LoginController::class)->name('auth.login')->grou
 
 Route::prefix('/accueil')->controller(AccueilController::class)->name('accueil')->group(function (){
 
+
     Route::get('/','accueil')->name('');
 
 

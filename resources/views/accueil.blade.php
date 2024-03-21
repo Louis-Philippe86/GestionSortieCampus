@@ -30,7 +30,9 @@
     <h1 class="text-center mb-5">Sortir.com</h1>
     <section>
         <h5>Filtrer les sorties</h5>
+
         <form action="" method="get" >
+
             <div class="container-fluid d-flex flex-row">
                 @csrf
                 <div class="container-fluid d-flex flex-row col-12 ">
@@ -47,6 +49,7 @@
                         <div class="container-fluid d-flex flex-row mt-3">
                             <label class="col-2"  for="search">Rechercher :</label>
                             <input class="col-5"  type="search" name="search" id="search" >
+
                         </div>
                         <div class="container-fluid d-flex flex-row mt-3">
                             <label class="col-1"  for="dateMin">Entre </label>
@@ -96,6 +99,7 @@
             </tr>
             </thead>
             <tbody>
+
             @if($datas != null || $datas!=0)
                 @for($i = 0; $i<count($datas);$i++)
     {{--         Si l'organisateur de la sortie est celui qui est connecté, alors on affcihe les sortie avec l'etat : "Cree"--}}
