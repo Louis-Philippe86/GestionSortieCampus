@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\SearchController;
 use App\Models\Participant;
 use App\Models\Participant_sortie;
