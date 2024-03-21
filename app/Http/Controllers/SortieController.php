@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AnnulerSortie;
 use App\Http\Requests\CreateSortieRequest;
 use App\Models\Lieu;
-use App\Models\Participant;
-use App\Models\Participant_sortie;
 use App\Models\Sortie;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class SortieController extends Controller
 {
@@ -50,8 +49,27 @@ class SortieController extends Controller
         return view('sortie.afficherSortie')->with(['sortie'=>$sortie]);
     }
 
-    public function modifierSortie(Sortie $sortie){
+    public function FormModifierSortie(Sortie $sortie){
         return view('sortie.modiferSortie')->with(['sortie'=>$sortie]);
+    }
+
+    public function modifierSortie(CreateSortieRequest $request, Sortie $sortie){
+        $data = $request->all();
+        $data['etat_id'] = $sortie->etat_id;
+
+
+
+        if(!isset($data['lieu_id'])) {
+            $lieu = Lieu::create($request->lieu);
+            $data['lieu_id'] = $lieu->id;
+        }
+        unset($data['ajouterLieu']);
+        unset($data['_token']);
+        unset($data['ville_id']);
+
+        $sortieModifie = Sortie::query()->find($sortie->id);
+        $sortieModifie->update($data);
+        return redirect()->route('accueil')->with('success','Sortie modifiée avec succé');
     }
 
     public function publierSortie(Sortie $sortie){

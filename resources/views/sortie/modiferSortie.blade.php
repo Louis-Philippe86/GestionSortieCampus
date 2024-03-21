@@ -6,14 +6,15 @@
 @section('content')
     {{--    /////////////////////////////////////////////////////////////////--}}
     <!--Script pour générer des dates par deffaut-->
-    <script defer src="{{ asset('js/datetime-now.js') }}"></script>
-    <script defer src="{{ asset('js/date-now-m.js') }}"></script>
+{{--    <script defer src="{{ asset('js/datetime-now.js') }}"></script>--}}
+{{--    <script defer src="{{ asset('js/date-now-m.js') }}"></script>--}}
 
     {{--    /////////////////////////////////////////////////////////////////--}}
     <!--Script pour l'affichage des menus de création de lieu-->
     <script>
         window.lieux = {!! json_encode(\App\Models\Lieu::all()) !!};
         window.ville = {!! json_encode(\App\Models\Ville::all()) !!};
+        window.sortie = {!! json_encode($sortie) !!};
     </script>
     <script defer src="{{ asset('js/createSortie_afficherLieux.js') }}"></script>
     <script src="{{asset('js/creationSortie_ajouterLieu.js')}}"></script>
@@ -30,7 +31,7 @@
     @endif
 
 
-    <h1 class="text-center">Creer une sortie</h1>
+    <h1 class="text-center">Modifier une sortie</h1>
     <form action="" method="post" >
         <div class="container-fluid d-flex flex-row">
             @csrf
@@ -38,27 +39,27 @@
                 <div class="col-12">
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6" for="nom">Nom de la sortie</label>
-                        <input class="col-6" type="text" name="nom" id="nom" value="nomSortie">
+                        <input class="col-6" type="text" name="nom" id="nom" value="{{$sortie->nom}}">
                     </div>
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6"  for="dateHeureDebut">Date et heure du début</label>
-                        <input class="col-6"  type="datetime-local" name="dateHeureDebut" id="dateHeureDebut">
+                        <input class="col-6"  type="datetime-local" name="dateHeureDebut" id="dateHeureDebut" value="{{$sortie->dateHeureDebut}}">
                     </div>
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6"  for="dateLimiteInscription">Date limite d'inscription</label>
-                        <input class="col-6" type="date" name="dateLimiteInscription" id="dateLimiteInscription" >
+                        <input class="col-6" type="date" name="dateLimiteInscription" id="dateLimiteInscription" value="{{$sortie->dateLimiteInscription}}">
                     </div>
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6" for="nbInscriptionMax">Places disponnible</label>
-                        <input class="col-6" type="number" name="nbInscriptionMax" id="nbInscriptionMax" value="10">
+                        <input class="col-6" type="number" name="nbInscriptionMax" id="nbInscriptionMax" value="{{$sortie->nbInscriptionMax}}">
                     </div>
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6" for="duree">Durée </label>
-                        <input class="col-6" type="number" name="duree" id="duree" value="90">
+                        <input class="col-6" type="number" name="duree" id="duree" value="{{$sortie->duree}}">
                     </div>
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6" for="infosSortie">Information sur la sortie</label>
-                        <textarea class="col-6" name="infosSortie" id="infosSortie" cols="5" rows="10" >Informtion sur la sortie</textarea>
+                        <textarea class="col-6" name="infosSortie" id="infosSortie" cols="5" rows="10" >{{$sortie->infosSortie}}</textarea>
                     </div>
                 </div>
             </div>
@@ -81,7 +82,7 @@
                         <label class="col-4" for="ville">Ville : </label>
                         <select class="col-4" name="ville_id" id="ville" onchange="updateLieux()">
                             @foreach(\App\Models\Ville::all() as $ville)
-                                <option value="{{$ville->id}}">{{$ville->nom}}</option>
+                                <option value="{{$ville->id}}" @if($sortie->lieu->ville->nom == $ville->nom) selected @endif>{{$ville->nom}}</option>
                             @endforeach
                         </select>
                     </div>

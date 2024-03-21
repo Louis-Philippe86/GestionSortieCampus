@@ -1,6 +1,9 @@
 
 var lieu = window.lieux
 var ville = window.ville
+var sortie = window.sortie
+console.log(sortie)
+
 
 /*
     Affiche les différents lieux présent dans la bdd, suivant la ville selectionné
@@ -48,7 +51,7 @@ function updateDonneeLieu() {
         return lieu.id == selectedLieuId;
     });
 
-    // Afficher lles données du lieu selectionné
+    // Afficher les données du lieu selectionné
     if (selectedLieu) {
         rueParagraph.innerText = 'Rue : ' + selectedLieu.rue ;
         longitudeParagraph.innerText = 'Longitude : ' + selectedLieu.longitude + '°';
@@ -63,6 +66,8 @@ function addOption(selectElement, text, value) {
     var option = document.createElement('option');
     option.text = text;
     option.value = value;
+    if (value === sortie.lieu_id)
+        option.selected = true
     selectElement.add(option);
 }
 
