@@ -83,20 +83,6 @@ class AccueilController extends Controller
         return view('pageError.notFound');
     }
 
-
-
-//  "_token" => "9x9BvbQSin708rItvBWLo5nphaGJYEzBNPg7rWdQ"
-//  "campus_id" => "1"
-//  "search" => null
-//  "dateMin" => null
-//  "dateMax" => null
-//  "ownSortie" => "on"
-//  "sortieInscrit" => "on"
-//  "sortieNonInscrit" => "on"
-//  "sortieTermine" => "on"
-
-
-
     public static function optionAction(Sortie $sortie,Participant $user) {
 
         $otpion =[];
