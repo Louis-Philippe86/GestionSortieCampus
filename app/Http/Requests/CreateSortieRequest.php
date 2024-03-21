@@ -32,7 +32,8 @@ class CreateSortieRequest extends FormRequest
             'nbInscriptionMax'=>['required'],
             'infosSortie'=>['required'],
             'campus_id'=>['required'],
-            'participant_id'=>['required']
+            'participant_id'=>['required'],
+
 
         ];
 

@@ -56,7 +56,8 @@ Route::prefix('/sortie')->controller(SortieController::class)->name('sortie')->g
     Route::get('/afficher-{sortie}','afficherSortie')->name('.afficher');
     Route::post('/afficher-{sortie}','publierSortie')->name('.afficher');
 
-    Route::get('/modifier-{sortie}','modifierSortie')->name('.modifier');
+    Route::get('/modifier-{sortie}','formModifierSortie')->name('.modifier');
+    Route::post('/modifier-{sortie}','modifierSortie');
 });
 
 
