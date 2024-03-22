@@ -6,8 +6,8 @@
 @section('content')
 {{--    /////////////////////////////////////////////////////////////////--}}
     <!--Script pour générer des dates par deffaut-->
-    <script defer src="{{ asset('js/datetime-now.js') }}"></script>
-    <script defer src="{{ asset('js/date-now-m.js') }}"></script>
+{{--    <script defer src="{{ asset('js/datetime-now.js') }}"></script>--}}
+{{--    <script defer src="{{ asset('js/date-now-m.js') }}"></script>--}}
 
 {{--    /////////////////////////////////////////////////////////////////--}}
     <!--Script pour l'affichage des menus de création de lieu-->
@@ -38,27 +38,28 @@
                 <div class="col-12">
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6" for="nom">Nom de la sortie</label>
-                        <input class="col-6" type="text" name="nom" id="nom" value="nomSortie">
+                        <input class="col-6" type="text" name="nom" id="nom" value="{{old('nom')}}">
                     </div>
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6"  for="dateHeureDebut">Date et heure du début</label>
-                        <input class="col-6"  type="datetime-local" name="dateHeureDebut" id="dateHeureDebut">
+                        <input class="col-6"  type="datetime-local" name="dateHeureDebut" id="dateHeureDebut" value="{{old('dateHeureDebut')}}">
                     </div>
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6"  for="dateLimiteInscription">Date limite d'inscription</label>
-                        <input class="col-6" type="date" name="dateLimiteInscription" id="dateLimiteInscription" >
+                        <input class="col-6" type="date" name="dateLimiteInscription" id="dateLimiteInscription" value="{{old('dateLimiteInscription')}}">
                     </div>
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6" for="nbInscriptionMax">Places disponnible</label>
-                        <input class="col-6" type="number" name="nbInscriptionMax" id="nbInscriptionMax" value="10">
+                        <input class="col-6" type="number" name="nbInscriptionMax" id="nbInscriptionMax" value="{{old('nbInscriptionMax')}}">
                     </div>
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
-                        <label class="col-6" for="duree">Durée </label>
-                        <input class="col-6" type="number" name="duree" id="duree" value="90">
+                        <label class="col-6" for="duree">Durée (minutes) </label>
+                        <input class="col-6" type="number" name="duree" id="duree" placeholder="durée en minute" value="{{old('duree')}}">
+
                     </div>
                     <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                         <label class="col-6" for="infosSortie">Information sur la sortie</label>
-                        <textarea class="col-6" name="infosSortie" id="infosSortie" cols="5" rows="10" >Informtion sur la sortie</textarea>
+                        <textarea class="col-6" name="infosSortie" id="infosSortie" cols="5" rows="10" >{{old('infosSortie')}}</textarea>
                     </div>
                 </div>
             </div>
@@ -108,21 +109,21 @@
                             <p class="fw-bold col-11 text-center">Saisissez les information relative au lieu de la ville séléctionné</p>
                             <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                                 <label class="col-4" for="nomLieu">Nom du lieu : </label>
-                                <input class="col-4" type="text" name="nom_lieu" id="nomLieu" value="nom du lieu">
+                                <input class="col-4" type="text" name="nom_lieu" id="nomLieu" >
                             </div>
                             <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                                 <label class="col-4" for="lieu_rue_id">Rue</label>
-                                <input class="col-4" type="text" name="rue" id="lieu_rue_id" value="nom de la rue">
+                                <input class="col-4" type="text" name="rue" id="lieu_rue_id" >
                             </div>
 
                             <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                                 <label class="col-4" for="longitude">longitude : </label>
-                                <input class="col-4" type="text" name="longitude" id="longitude" value="50">
+                                <input class="col-4" type="text" name="longitude" id="longitude" >
                             </div>
 
                             <div class="container-fluid d-flex flex-row justify-content-center mt-3">
                                 <label class="col-4" for="latitude">latitude :</label>
-                                <input class="col-4" type="text" name="latitude" id="latitude" value="100">
+                                <input class="col-4" type="text" name="latitude" id="latitude" >
                             </div>
 
                         </section>

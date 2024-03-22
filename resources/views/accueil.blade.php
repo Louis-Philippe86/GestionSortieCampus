@@ -48,14 +48,14 @@
 
                         <div class="container-fluid d-flex flex-row mt-3">
                             <label class="col-2"  for="search">Rechercher :</label>
-                            <input class="col-5"  type="search" name="search" id="search" >
+                            <input class="col-5"  type="search" name="search" id="search" value="{{ request('search') }}" >
 
                         </div>
                         <div class="container-fluid d-flex flex-row mt-3">
                             <label class="col-1"  for="dateMin">Entre </label>
-                            <input class="col-3" type="date" name="dateMin" id="dateMin" >
+                            <input class="col-3" type="date" name="dateMin" id="dateMin" value="{{ request('dateMin') }}">
                             <label class="col-1 ms-5"  for="dateMax">et </label>
-                            <input class="col-3" type="date" name="dateMax" id="dateMax" >
+                            <input class="col-3" type="date" name="dateMax" id="dateMax" value="{{ request('dateMax') }}" >
                         </div>
                     </div>
                     <div class="container-fluid d-flex flex-column justify-content-center col-4 ">
