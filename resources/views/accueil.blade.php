@@ -103,7 +103,7 @@
             @if($datas != null || $datas!=0)
                 @for($i = 0; $i<count($datas);$i++)
     {{--         Si l'organisateur de la sortie est celui qui est connecté, alors on affcihe les sortie avec l'etat : "Cree"--}}
-                    @if($datas[$i]->etat->libelle != 'Cree' && $datas[$i]->participant->nom == Auth::user()->nom)
+                    @if($datas[$i]->etat->libelle != 'Cree' || $datas[$i]->participant->nom == Auth::user()->nom)
                         <tr>
                             <td>{{$datas[$i]->nom}}</td>
                             <td>{{ \Carbon\Carbon::parse($datas[$i]->dateHeureDebut)->format('d/m/Y à H:m') }}</td>
