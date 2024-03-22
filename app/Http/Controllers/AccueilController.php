@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Requests\SearchController;
 use App\Models\Participant;
 use App\Models\Participant_sortie;
 use App\Models\Sortie;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use function PHPUnit\Framework\isEmpty;
+
 
 
 class AccueilController extends Controller
@@ -25,11 +23,11 @@ class AccueilController extends Controller
             }
 
             if ($request->has('dateMin') && $request->dateMin != null) {
-                $sortie->where('dateHeureDebut', '>', $request->dateMin);
+                $sortie->where('dateHeureDebut', '>=', $request->dateMin);
             }
 
             if ($request->has('dateMax') && $request->dateMax != null) {
-                $sortie->where('dateLimiteInscription', '<', $request->dateMax);
+                $sortie->where('dateLimiteInscription', '<=', $request->dateMax);
             }
 
             if ($request->has('search') && $request->search != null) {
@@ -77,6 +75,11 @@ class AccueilController extends Controller
     public static function optionAction(Sortie $sortie,Participant $user) {
 
         $otpion =[];
+        $inscrit = Participant_sortie::query()
+            ->get()
+            ->where('participant_id',Auth::user()->id,)
+            ->where('sortie_id',$sortie->id);
+        dump($inscrit);
         switch ($sortie->etat_id){
             case 1:
                 if($user->id == $sortie->participant_id){
@@ -97,10 +100,7 @@ class AccueilController extends Controller
 
                     break;
                 }else{
-                    $inscrit = Participant_sortie::query()
-                        ->get()
-                        ->where('participant_id',Auth::user()->id,)
-                        ->where('sortie_id',$sortie->id);
+
 
                     if($inscrit->isEmpty()){
                         $otpion [] = '<a href="' . route('profil.inscription', ['sortie' => $sortie,'participant'=>Auth::user()]) . '">S\'inscrire</a>';
@@ -109,9 +109,13 @@ class AccueilController extends Controller
                     }
                     break;
                 }
-            //sortie En cours
-            case 4:
-
+            //sortie cloture
+            case 3:
+                $otpion [] ='<a href="' . route('sortie.afficher', ['sortie' => $sortie]) . '">Afficher</a>';
+                if($inscrit->isNotEmpty()){
+                    $otpion [] = '<a href="' . route('profil.annulerInscritpion', ['sortie' => $sortie,'participant'=>Auth::user()]) . '">Se desiter</a>';
+                }
+                break;
             //Sortie Annule
             case 6:
                 $otpion [] ='<a href="' . route('sortie.afficher', ['sortie' => $sortie]) . '">Afficher</a>';
