@@ -84,27 +84,26 @@
         </form>
     </section>
 
-    <section class="container-fluid col-11 mt-5">
+    <section class="container-fluid col-11 mt-5 mb-5 pb-5">
         <table class=" table table-bordered table-striped  mb-5">
             <thead class="">
             <tr class="table-dark align-middle">
                 <th class="col-2 text-center">Nom de la sortie</th>
-                <th class="col-3 text-center">Date de la sortie</th>
+                <th class="col-2 text-center">Date de la sortie</th>
                 <th class="col-1 text-center">Clôture</th>
                 <th class="col-1 text-center">Inscrits / Places</th>
                 <th class="col-1 text-center">Etat</th>
                 <th class="col-1 text-center">Inscrit</th>
-                <th class="col-1 text-center">Organisateur</th>
-                <th class="col-5 text-center">Action</th>
+                <th class="col-2 text-center">Organisateur</th>
+                <th class="col text-center">Action</th>
             </tr>
             </thead>
             <tbody>
-
             @if($datas != null || $datas!=0)
                 @for($i = 0; $i<count($datas);$i++)
     {{--         Si l'organisateur de la sortie est celui qui est connecté, alors on affcihe les sortie avec l'etat : "Cree"--}}
                     @if($datas[$i]->etat->libelle != 'Cree' || $datas[$i]->participant->nom == Auth::user()->nom)
-                        <tr>
+                        <tr class="align-middle">
                             <td>{{$datas[$i]->nom}}</td>
                             <td>{{ \Carbon\Carbon::parse($datas[$i]->dateHeureDebut)->format('d/m/Y à H:m') }}</td>
                             <td>{{ \Carbon\Carbon::parse($datas[$i]->dateLimiteInscription)->format('d/m/Y') }}</td>
@@ -129,8 +128,7 @@
                 @endfor
             @endif
             </tbody>
-    <section>
+        </table>
+
     </section>
-
-
 @endsection
