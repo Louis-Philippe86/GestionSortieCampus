@@ -2,8 +2,9 @@
 var lieu = window.lieux
 var ville = window.ville
 var sortie = window.sortie
-console.log(sortie)
-
+if (typeof sortie === "undefined") {
+    console.log("La variable existe.");
+}
 
 /*
     Affiche les différents lieux présent dans la bdd, suivant la ville selectionné
@@ -19,7 +20,7 @@ function updateLieux() {
     for (var i = 0; i < ville.length; i++) {
         selectedVilleId = parseInt(selectedVilleId)
         if (ville[i].id === selectedVilleId) {
-            console.log(ville[i].codePostal)
+
             codePostalVilleSelected.innerText ='Code Postal : ' + ville[i].codePostal
         }
     }
@@ -66,8 +67,9 @@ function addOption(selectElement, text, value) {
     var option = document.createElement('option');
     option.text = text;
     option.value = value;
-    if (value === sortie.lieu_id)
+    if(typeof sortie !== "undefined" && value === sortie.lieu_id){
         option.selected = true
+    }
     selectElement.add(option);
 }
 

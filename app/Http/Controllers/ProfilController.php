@@ -61,7 +61,7 @@ class ProfilController extends Controller
         }
 
         if($sortie->etat_id === 3 || $sortie->etat_id === 5 || $nombreInscrit >= $sortie->nbInscriptionMax){
-            return redirect()->route('accueil')->with('error', 'Inscritpion à la sortie'.$sortie->nom .'impossible. Sortie cloturé');
+            return redirect()->route('accueil')->with('error', 'Inscritpion à la sortie "'.$sortie->nom .'" impossible. Sortie cloturé');
         }else{
             $participantSortie = new Participant_sortie();
             $participantSortie->participant_id = Auth::user()->id;
@@ -69,7 +69,7 @@ class ProfilController extends Controller
             $participantSortie->save();
         }
 
-        return redirect()->route('accueil')->with('success', 'Inscritpion à la sortie'.$sortie->nom .'confirmé');
+        return redirect()->route('accueil')->with('success', 'Inscritpion à la sortie "'.$sortie->nom .'" confirmé');
 
     }
     public function annulerInscritpion(Sortie $sortie){

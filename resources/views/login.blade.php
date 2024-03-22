@@ -15,7 +15,7 @@
             <legend class="text-center">Connectez-vous</legend>
             <div class="form-group m-3">
                 <label for="email">Email</label>
-                <input class="form-control" type="email" name="email" id="email" required placeholder="email@gmail.com" value="admin@admin.com">
+                <input class="form-control" type="email" name="email" id="email" required placeholder="email@gmail.com" value="louis@admin.com">
             </div>
             <div class="form-group m-3">
                 <label for="password">Mot de passe</label>

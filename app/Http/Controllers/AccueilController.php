@@ -79,7 +79,7 @@ class AccueilController extends Controller
             ->get()
             ->where('participant_id',Auth::user()->id,)
             ->where('sortie_id',$sortie->id);
-        dump($inscrit);
+
         switch ($sortie->etat_id){
             case 1:
                 if($user->id == $sortie->participant_id){

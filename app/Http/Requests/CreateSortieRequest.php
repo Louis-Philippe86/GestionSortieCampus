@@ -26,9 +26,9 @@ class CreateSortieRequest extends FormRequest
 
         $rules = [
             'nom'=>['required'],
-            'dateHeureDebut'=>['required'],
+            'dateHeureDebut'=>['required','before:dateLimiteInscription'],
             'duree'=>['required'],
-            'dateLimiteInscription'=>['required'],
+            'dateLimiteInscription'=>['required','after:dateHeureDebut'],
             'nbInscriptionMax'=>['required'],
             'infosSortie'=>['required'],
             'campus_id'=>['required'],
@@ -93,8 +93,10 @@ class CreateSortieRequest extends FormRequest
 
             'nom.required' => "Le nom de la sortie est requis.",
             'dateHeureDebut.required' => "Date de début obligatoire",
+            'dateHeureDebut.before'=>"la date de début doit être inférieur à la date limite d'inscritpion",
             'duree.required' => "Durée requise",
             'dateLimiteInscription.required' => "La date limite d'inscription est obligatoire.",
+            'dateLimiteInscription.after'=>"la date limite d'inscription doit être supérieur à la date de la sortie",
             'nbInscriptionMax.required' => "Le nombre d'inscrit doit être renseigné",
             'infosSortie.required' => "Décrivez la sortie",
             'campus_id.required' => "Le campus est obliatoire",
