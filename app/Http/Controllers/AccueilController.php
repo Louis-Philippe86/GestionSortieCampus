@@ -8,7 +8,7 @@ use App\Models\Sortie;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use function PHPUnit\Framework\isEmpty;
 
 
 class AccueilController extends Controller

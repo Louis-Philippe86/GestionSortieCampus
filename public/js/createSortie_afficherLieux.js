@@ -2,9 +2,6 @@
 var lieu = window.lieux
 var ville = window.ville
 var sortie = window.sortie
-if (typeof sortie === "undefined") {
-    console.log("La variable existe.");
-}
 
 /*
     Affiche les différents lieux présent dans la bdd, suivant la ville selectionné
